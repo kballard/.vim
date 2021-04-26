@@ -9,9 +9,10 @@
 " Still others were hand-crafted over time by me.
 
 " Preamble {{{
-if has('vim_starting')
-  set nocompatible
-endif
+"
+" Adopt Vim defaults
+unlet! skip_defaults_vim
+source $VIMRUNTIME/defaults.vim
 
 " Clear vimrc augroup so the rest of the file can add to it
 augroup vimrc
@@ -76,9 +77,6 @@ call s:setupMappingHelper("<C-l>")
 
 " Reset the colorscheme now to avoid errors when reloading vimrc.
 unlet! g:colors_name
-" Turn on syntax now to ensure any appropriate autocommands run after the
-" syntax file has loaded.
-syntax on
 
 " }}}
 " Basic Options {{{
@@ -89,10 +87,7 @@ set modelines=5
 set autoindent
 set smartindent
 set showmode
-set showcmd
 set hidden
-set ruler
-set backspace=indent,eol,start
 set laststatus=2
 set history=1000
 set list
@@ -225,14 +220,14 @@ if !has('gui_running')
   else
     set t_Co=16
   endif
-  " Enable mouse support
-  set mouse=a
+  " Define new key mappings
+  exe "set <M-'>=\<Esc>'"
+  exe "set <M-`>=\<Esc>`"
 endif
 
 " }}}
 " Wildmenu completion {{{
 
-set wildmenu
 set wildmode=full
 
 set wildignore+=.hg,.git,.svn                    " Version control
@@ -942,7 +937,6 @@ nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 " Search Highlighting {{{
 
 set hlsearch
-set incsearch
 
 nnoremap <silent> <C-[>u :nohlsearch<CR>
 nnoremap <silent> ¨ :nohlsearch<CR>
@@ -1503,7 +1497,10 @@ nnoremap <leader>S ^vg_y:execute @@<cr>
 " Marks and Quotes
 noremap ' `
 noremap æ '
-noremap ` <C-^>
+noremap <M-'> '
+
+" Buffer movement
+noremap <M-`> <C-^>
 
 " Better Completion
 set completeopt=longest,menuone,preview
@@ -2075,8 +2072,6 @@ augroup END
 
 " }}}
 " Postlude {{{
-
-filetype plugin indent on
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
