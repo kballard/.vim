@@ -903,7 +903,9 @@ call neobundle#end()
 " Color Scheme {{{
 
 set background=dark
-if neobundle#is_installed('base16-vim')
+if $TERM_PROGRAM == "vscode" && !has('gui_running')
+  colorscheme oceandeep
+elseif neobundle#is_installed('base16-vim')
   NeoBundleSource base16-vim
   if has('gui_running')
     colorscheme base16-solarized-dark
