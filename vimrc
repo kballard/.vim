@@ -894,6 +894,9 @@ let g:snips_author = 'Lily Ballard'
 
 call neobundle#end()
 
+" neobundle disables filetype for some reason, so we have to turn it back on
+filetype plugin indent on
+
 " }}}
 " Color Scheme {{{
 
