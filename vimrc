@@ -273,9 +273,9 @@ set backupskip+=svn-commit*.tmp
 " Plugins {{{
 
 " NERDCommenter {{{
-let g:NERDCustomDelimiters = {
-      \ 'rust': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/'},
-      \ }
+"let g:NERDCustomDelimiters = {
+      "\ 'rust': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/'},
+      "\ }
 "}}}
 " Airline {{{
 let g:airline_powerline_fonts = 1
@@ -1389,6 +1389,7 @@ let g:rust_fold=1
 augroup ft_rust
   au!
   au FileType rust command! -buffer ReloadRust call <SID>ReloadRust()
+  au FileType rust call <SID>SetupRust()
 augroup END
 
 function! s:ReloadRust()
@@ -1400,20 +1401,15 @@ function! s:ReloadRust()
   runtime autoload/rust.vim
 endfunction
 
-let g:tagbar_type_rust = {
-  \ 'ctagstype' : 'rust',
-  \ 'kinds'     : [
-    \ 'f:function',
-    \ 'T:types',
-    \ 'm:types',
-    \ 'm:modules',
-    \ 'm:consts',
-    \ 'm:traits',
-    \ 'm:impls',
-    \ 'm:macros'
-  \ ],
-  \ 'sro'      : '::'
-\ }
+function! s:SetupRust()
+  if exists('s:did_setup_rust')
+    return
+  endif
+  let s:did_setup_rust=1
+  " rust.vim defines g:tagbar_type_rust but it misses macros and sro
+  let g:tagbar_type_rust.kinds+=['d:macros']
+  let g:tagbar_type_rust.sro='::'
+endfunction
 
 " }}}
 " Vagrant {{{

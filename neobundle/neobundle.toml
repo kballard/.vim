@@ -79,10 +79,6 @@ repository = 'kballard/vim-fish'
 on_ft = ['fish', 'fishprofile']
 
 [[plugins]]
-repository = 'rust-lang/rust.vim'
-on_ft = 'rust'
-
-[[plugins]]
 repository = 'kballard/vim-swift-extra'
 on_ft = 'swift'
 unite_sources = ['swift/device', 'swift/developer_dir']
@@ -103,10 +99,6 @@ on_ft = ['elixir', 'eelixir']
 [[plugins]]
 repository = 'leafgarland/typescript-vim'
 on_ft = ['typescript']
-
-[[plugins]]
-repository = 'LnL7/vim-nix'
-on_ft = ['nix']
 
 # Colorschemes
 
