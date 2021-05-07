@@ -163,6 +163,3 @@ mappings = ['gs', 'gS']
 [[plugins]]
 repository = 'terryma/vim-expand-region'
 mappings = ['+', '_']
-
-[[plugins]]
-repository = 'racer-rust/vim-racer'

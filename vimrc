@@ -781,20 +781,6 @@ if neobundle#tap('unite-tag') "{{{
   nnoremap <silent> [unite]t :<C-u>Unite -buffer-name=tag tag tag/file tag/include<cr>
   call neobundle#untap()
 endif "}}}
-if neobundle#tap('vim-racer') "{{{
-  let g:racer_cmd = $HOME."/.cargo/bin/racer"
-  let g:racer_experimental_completer = 1
-
-  augroup plug_vim_racer
-    au!
-    autocmd FileType rust nmap gd <Plug>(rust-dev)
-    autocmd FileType rust nmap gh <Plug>(rust-def-split)
-    autocmd FileType rust nmap gx <Plug>(rust-def-vertical)
-    autocmd FileType rust nmap <leader>gd <Plug>(rust-doc)
-  augroup END
-
-  call neobundle#untap()
-endif "}}}
 if neobundle#tap('vim-swift') "{{{
   let g:swift_device = 'iPhone 7'
   call neobundle#untap()
